@@ -1,0 +1,32 @@
+#include <Servo.h>
+
+Servo myservo;
+int desired = 0;
+int pulses = 0;
+
+
+void setup()
+{
+  	myservo.attach(9);
+	Serial.begin(9600);
+    Serial.println("Enter the desired position in mS.");
+ }
+                   
+void loop()
+{
+  while(Serial.available()>0)
+  {
+    Serial.print("Position: ");
+    desired = Serial.parseInt();
+    Serial.println(desired,DEC);
+    
+ pulses = 2000;
+  }
+  
+
+  for (int k = 0; k < pulses; k++)
+ 	{
+  		myservo.write(desired);
+ 	 }
+  
+}
